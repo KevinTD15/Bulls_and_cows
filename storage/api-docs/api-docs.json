@@ -1,0 +1,469 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Cows and Bulls",
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8000"
+        }
+    ],
+    "paths": {
+        "/api/register": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Register User",
+                "operationId": "8a56853624e025573120a09a4c75d468",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "foo"
+                                    },
+                                    "age": {
+                                        "type": "number",
+                                        "example": 24
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "foo@gmail.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "123abc"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "name": {
+                                            "type": "string",
+                                            "example": "foo"
+                                        },
+                                        "age": {
+                                            "type": "number",
+                                            "example": 24
+                                        },
+                                        "email": {
+                                            "type": "string",
+                                            "format": "email",
+                                            "example": "foo@gmail.com"
+                                        },
+                                        "password": {
+                                            "type": "string",
+                                            "example": "123abc"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Error"
+                    }
+                }
+            }
+        },
+        "/api/login": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Login User",
+                "operationId": "a3b306d14572d1f4bd6c064b3233e7b8",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "foo@gmail.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "123abc"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "422": {
+                        "description": "Error"
+                    }
+                }
+            }
+        },
+        "/api/logout": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Logout User",
+                "description": "Invalidated the current access token",
+                "operationId": "fe8f3429cd6979b3b4517e186505f9f9",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Unautorized"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/game/create_game": {
+            "post": {
+                "tags": [
+                    "Game"
+                ],
+                "summary": "Create game",
+                "operationId": "c94e21ea2a5d596a4d455e7539af13ad",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "foo"
+                                    },
+                                    "age": {
+                                        "type": "number",
+                                        "example": 24
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "user_id": {
+                                            "type": "number",
+                                            "example": "1"
+                                        },
+                                        "game_id": {
+                                            "type": "number",
+                                            "example": "1"
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "example": "foo"
+                                        },
+                                        "state": {
+                                            "type": "string",
+                                            "example": "P"
+                                        },
+                                        "combination": {
+                                            "type": "array",
+                                            "items": {
+                                                "example": {
+                                                    "item1": "1",
+                                                    "item2": "2",
+                                                    "item3": "3",
+                                                    "item4": "4"
+                                                }
+                                            }
+                                        },
+                                        "plays": {
+                                            "type": "array",
+                                            "items": {
+                                                "example": {
+                                                    "item1": "1",
+                                                    "item2": "2",
+                                                    "item3": "3",
+                                                    "item4": "4"
+                                                }
+                                            }
+                                        },
+                                        "time": {
+                                            "type": "number",
+                                            "example": "0"
+                                        },
+                                        "attempts": {
+                                            "type": "number",
+                                            "example": "0"
+                                        },
+                                        "evaluation": {
+                                            "type": "number",
+                                            "example": "0"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Error"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/game/execute_turn": {
+            "post": {
+                "tags": [
+                    "Game"
+                ],
+                "summary": "Execute turn",
+                "operationId": "699e994df5f7e439f15b1bf916445837",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "play": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "id": {
+                                        "type": "number",
+                                        "example": 1
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "user_id": {
+                                            "type": "number",
+                                            "example": "1"
+                                        },
+                                        "state": {
+                                            "type": "string",
+                                            "example": "P"
+                                        },
+                                        "plays": {
+                                            "type": "array",
+                                            "items": {
+                                                "example": {
+                                                    "item1": "1",
+                                                    "item2": "2",
+                                                    "item3": "3",
+                                                    "item4": "4"
+                                                }
+                                            }
+                                        },
+                                        "result": {
+                                            "type": "string",
+                                            "example": "2B0C"
+                                        },
+                                        "attempts": {
+                                            "type": "number",
+                                            "example": "1"
+                                        },
+                                        "time": {
+                                            "type": "number",
+                                            "example": "3"
+                                        },
+                                        "evaluation": {
+                                            "type": "number",
+                                            "example": "0"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Error"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/game/index": {
+            "post": {
+                "tags": [
+                    "Game"
+                ],
+                "summary": "Game list",
+                "operationId": "f013dcb5d80e18fb5caf4e25162d42e7",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "game list": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "game_id": {
+                                                        "type": "number",
+                                                        "example": "1"
+                                                    },
+                                                    "user_id": {
+                                                        "type": "number",
+                                                        "example": "1"
+                                                    },
+                                                    "name": {
+                                                        "type": "string",
+                                                        "example": "foo"
+                                                    },
+                                                    "state": {
+                                                        "type": "string",
+                                                        "example": "W"
+                                                    },
+                                                    "attempt": {
+                                                        "type": "number",
+                                                        "example": "10"
+                                                    },
+                                                    "evaluation": {
+                                                        "type": "number",
+                                                        "example": "25"
+                                                    },
+                                                    "combination": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "example": {
+                                                                "item1": "1",
+                                                                "item2": "2",
+                                                                "item3": "3",
+                                                                "item4": "4"
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/game/ranking": {
+            "get": {
+                "tags": [
+                    "Game"
+                ],
+                "summary": "Show ranking",
+                "operationId": "523bff617c039cfe443bb22ae063dba3",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "ranking list": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "name": {
+                                                        "type": "string",
+                                                        "example": "foo"
+                                                    },
+                                                    "evaluation": {
+                                                        "type": "number",
+                                                        "example": "25"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Error"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "sanctum": {
+                "type": "http",
+                "description": "Enter token in format (Bearer <token>)",
+                "name": "Authorization",
+                "in": "header",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "security": {
+        "sanctum": {
+            "scheme": "bearer"
+        }
+    }
+}
